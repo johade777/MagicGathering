@@ -11,8 +11,8 @@ class CardListViewModel(private val apiRepository: ApiRepository) : ViewModel() 
     fun getCards() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            var temp = apiRepository.getCards()
-            emit(Resource.success(data = apiRepository.getCards()))
+            val cards = apiRepository.getCards()
+            emit(Resource.success(data = cards))
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }

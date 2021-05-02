@@ -3,6 +3,8 @@ package com.example.magicgathering.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.magicgathering.data.model.GetCardResponse
 import androidx.lifecycle.Observer
@@ -18,20 +20,28 @@ import com.example.magicgathering.data.model.Card
 import com.example.magicgathering.util.Status
 import com.example.magicgathering.viewmodel.CardListViewModel
 import com.example.magicgathering.viewmodel.ViewModelFactory
+import com.squareup.picasso.Picasso
 
 class CardListActivity : AppCompatActivity() {
     private lateinit var viewModel: CardListViewModel
     private lateinit var cardRecyclerView: RecyclerView
     private lateinit var adapter: CardAdapter
+    private lateinit var fetchCardsButton: Button
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         cardRecyclerView = findViewById(R.id.card_recycler)
+        fetchCardsButton = findViewById(R.id.fetch_button)
+        progressBar = findViewById(R.id.progress_bar)
 
         setupViewModel()
         setupView()
-        setupObservers()
+
+        fetchCardsButton.setOnClickListener {
+            setupObservers()
+        }
     }
 
     private fun setupView(){
@@ -56,15 +66,15 @@ class CardListActivity : AppCompatActivity() {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-//                        progressBar.visibility = View.GONE
+                        progressBar.visibility = View.GONE
                         resource.data?.let { cardList -> updateCards(cardList) }
                     }
                     Status.ERROR -> {
-//                        progressBar.visibility = View.GONE
+                        progressBar.visibility = View.GONE
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     }
                     Status.LOADING -> {
-//                        progressBar.visibility = View.VISIBLE
+                        progressBar.visibility = View.VISIBLE
                     }
                 }
             }
@@ -73,9 +83,5 @@ class CardListActivity : AppCompatActivity() {
 
     private fun updateCards(cards: GetCardResponse) {
         adapter.setMagicCards(cards.cardList)
-//        adapter.apply {
-//            addUsers(users)
-//            notifyDataSetChanged()
-//        }
     }
 }
