@@ -17,6 +17,7 @@ import com.example.magicgathering.adapter.CardAdapter
 import com.example.magicgathering.data.api.ApiServiceHelper
 import com.example.magicgathering.data.api.RetrofitBuilder
 import com.example.magicgathering.data.model.Card
+import com.example.magicgathering.util.MyApplicationContext
 import com.example.magicgathering.util.Status
 import com.example.magicgathering.viewmodel.CardListViewModel
 import com.example.magicgathering.viewmodel.ViewModelFactory
@@ -35,6 +36,7 @@ class CardListActivity : AppCompatActivity() {
         cardRecyclerView = findViewById(R.id.card_recycler)
         fetchCardsButton = findViewById(R.id.fetch_button)
         progressBar = findViewById(R.id.progress_bar)
+        MyApplicationContext.setContext(this)
 
         setupViewModel()
         setupView()
