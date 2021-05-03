@@ -2,5 +2,5 @@ package com.example.magicgathering.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GetCardResponse(
+data class GetCardsResponse(
     @SerializedName("cards") val cardList: List<Card>)

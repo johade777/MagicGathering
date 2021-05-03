@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.magicgathering.data.model.GetCardResponse
+import com.example.magicgathering.data.model.GetCardsResponse
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,12 +16,10 @@ import com.example.magicgathering.R
 import com.example.magicgathering.adapter.CardAdapter
 import com.example.magicgathering.data.api.ApiServiceHelper
 import com.example.magicgathering.data.api.RetrofitBuilder
-import com.example.magicgathering.data.model.Card
 import com.example.magicgathering.util.MyApplicationContext
 import com.example.magicgathering.util.Status
 import com.example.magicgathering.viewmodel.CardListViewModel
 import com.example.magicgathering.viewmodel.ViewModelFactory
-import com.squareup.picasso.Picasso
 
 class CardListActivity : AppCompatActivity() {
     private lateinit var viewModel: CardListViewModel
@@ -83,7 +81,7 @@ class CardListActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateCards(cards: GetCardResponse) {
+    private fun updateCards(cards: GetCardsResponse) {
         adapter.setMagicCards(cards.cardList)
     }
 }

@@ -10,6 +10,8 @@ class ViewModelFactory(private val apiHelper: ApiServiceHelper) : ViewModelProvi
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CardListViewModel::class.java)) {
             return CardListViewModel(ApiRepository(apiHelper)) as T
+        }else if (modelClass.isAssignableFrom(CardDetailsViewModel::class.java)) {
+            return CardDetailsViewModel(ApiRepository(apiHelper)) as T
         }
         throw IllegalArgumentException("Unknown class name")
     }
