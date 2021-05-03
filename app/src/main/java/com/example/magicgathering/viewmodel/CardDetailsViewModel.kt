@@ -2,6 +2,8 @@ package com.example.magicgathering.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.example.magicgathering.data.model.Card
+import com.example.magicgathering.data.model.GetCardsResponse
 import com.example.magicgathering.data.repository.ApiRepository
 import com.example.magicgathering.util.Resource
 import kotlinx.coroutines.Dispatchers
